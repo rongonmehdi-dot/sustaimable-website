@@ -1,15 +1,2 @@
-const toggle = document.querySelector('.menu-toggle');
-const nav = document.querySelector('.nav');
-if (toggle && nav) {
-  toggle.addEventListener('click', () => {
-    const isOpen = nav.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', String(isOpen));
-    toggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
-  });
-  nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-    nav.classList.remove('open');
-    toggle.setAttribute('aria-expanded', 'false');
-  }));
-}
-const year = document.getElementById('year');
-if (year) year.textContent = new Date().getFullYear();
+const toggle=document.querySelector('.menu'),nav=document.querySelector('.nav');if(toggle&&nav){toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');toggle.setAttribute('aria-expanded','false')}));}const year=document.getElementById('year');if(year)year.textContent=new Date().getFullYear();
+const slides=[...document.querySelectorAll('.experience-slide')],dots=[...document.querySelectorAll('.carousel-dot')];let currentSlide=0;function showSlide(index){if(!slides.length)return;currentSlide=(index+slides.length)%slides.length;slides.forEach((s,i)=>s.classList.toggle('active',i===currentSlide));dots.forEach((d,i)=>{d.classList.toggle('active',i===currentSlide);d.setAttribute('aria-pressed',String(i===currentSlide));});}document.querySelector('.carousel-prev')?.addEventListener('click',()=>showSlide(currentSlide-1));document.querySelector('.carousel-next')?.addEventListener('click',()=>showSlide(currentSlide+1));dots.forEach((d,i)=>d.addEventListener('click',()=>showSlide(i)));
